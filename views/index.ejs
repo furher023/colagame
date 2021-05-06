@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <p id="time" ></p>
+    <script>
+      var c=0;
+      function updater(){
+        console.log('here');
+        $.ajax({
+          type:'GET',
+          url:'/serverTime',
+          success: function(result){
+            document.getElementById('time').innerHTML=result;
+          }
+        });
+      }
+      var myVar = setInterval(updater,1000);
+    </script>
+  </body>
+</html>
