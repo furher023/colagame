@@ -6,6 +6,15 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/signIn', function(req, res, next) {
+  res.render('signIn');
+});
+
+router.post('/signIn', function(req, res, next) {
+  console.log(req.body);
+  res.redirect('/users/dashboard');
+});
+
 router.get('/serverTime',(req,res,next)=>{
   //var df=new Date(2021,4,6,6,30);
   var d = new Date();

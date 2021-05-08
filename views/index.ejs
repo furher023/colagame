@@ -4,11 +4,47 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <p id="time" ></p>
+    <div>
+      <canvas id="myChart"></canvas>
+    </div>  
+
+    <Script>
+      const labels = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+];
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [0, 10, 5, 2, 20, 30, 45],
+  }]
+};
+
+const config = {
+  type: 'line',
+  data,
+  options: {}
+};
+var myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+    </Script>
+
+
     <script>
       var c=0;
       function updater(){
