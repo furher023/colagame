@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+
 var game = [
   {
     name : 'abcd',
@@ -10,13 +11,13 @@ var game = [
 ];
 
 /* GET users listing. */
+
 router.get('/dashboard', function(req, res, next) {
   res.render('dashboard');
 });
 
 //create game
 router.post('/create', function(req, res, next) {
-  /*console.log(req.body); */
   const newGame = {
     "name" : req.body.name,
     "noOfPlayers"  : req.body.noOfPlayers,

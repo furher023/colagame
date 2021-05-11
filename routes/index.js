@@ -11,8 +11,20 @@ router.get('/signIn', function(req, res, next) {
 });
 
 router.post('/signIn', function(req, res, next) {
-  console.log(req.body);
-  res.redirect('/users/dashboard');
+
+  let authenticate = require('../modules/authentication');
+  let setSession = require('../modules/session');
+
+  authenticate(req.body)
+  .then( (result) =>{
+    setSession(req,result);
+    res.redirect('/users/dashboard');
+  } )
+  .catch( (err) =>{
+      if(err) res.send(err);
+      else res.redirect('/signIn');
+  })
+
 });
 
 router.get('/serverTime',(req,res,next)=>{

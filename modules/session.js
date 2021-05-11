@@ -1,4 +1,4 @@
-function setSession(req,name,email){
+function setSession(req,{name,email,admin}){
     req.session.user = {
         name: name,
         email: email,
@@ -6,6 +6,4 @@ function setSession(req,name,email){
     };
 }
 
-module.exports = {
-    setSession: setSession
-};
+module.exports = setSession;
