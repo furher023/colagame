@@ -34,4 +34,22 @@ router.get('/viewGame', function(req, res, next){
   res.render('viewGame',{game:game});
 });
 
+var joinedGame;
+router.post('/joinGame', function(req, res, next){
+  joinedGame = {
+    "name" : req.body.name,
+    "noOfPlayers" : req.body.noOfPlayers
+  };
+});
+
+router.get('/dashboard1', function(req, res, next) {
+  res.render('dashboard1',{joinedGame:joinedGame});
+});
+
+
+
+
+
+
+
 module.exports = router;
