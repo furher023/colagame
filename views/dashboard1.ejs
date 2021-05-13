@@ -19,32 +19,23 @@
                 <!-- Content here -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Enter Details</h3>
+                        <h3 class="card-title">Enter ID of Game to join</h3>
                     </div>
                     <div class="card-body">
                         <form action="/users/create" method="POST">
                             <div class="form-group mb-3 ">
-                                <label class="form-label">Name</label>
+                                <label class="form-label">Game Id</label>
                                 <div>
                                     <input type="text" id="name" name="name" class="form-control"
-                                        aria-describedby="emailHelp" placeholder="Enter name of the game">
+                                        aria-describedby="emailHelp" placeholder="Enter id of the game">
                                     <small class="form-hint">Lorem ipsum dolor sit amet consectetur adipisicing
                                         elit.</small>
                                 </div>
                             </div>
-                            <div class="form-group mb-3 ">
-                                <label class="form-label">No. Of Players</label>
-                                <div>
-                                    <input type="number" id="noOfPlayers" name="noOfPlayers" class="form-control"
-                                        placeholder="Maximum Paritcipants">
-                                    <small class="form-hint">
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                    </small>
-                                </div>
-                            </div>
+                            
 
                             <div class="form-footer">
-                                <button type="joinGame" class="btn btn-primary">JoinGame</button>
+                                <button type="submit" class="btn btn-primary">JoinGame</button>
                             </div>
                         </form>
                     </div>
@@ -61,7 +52,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <h2 class="page-title">
-                            Join Team
+                            Join or Create Team
                         </h2>
                     </div>
                 </div>
@@ -73,34 +64,52 @@
                 <!-- Content here -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Enter Details</h3>
+                        <h3 class="card-title">Enter Team to join </h3>
                     </div>
                     <div class="card-body">
                         <form action="/users/create" method="POST">
                             <div class="form-group mb-3 ">
-                                <label class="form-label">Name</label>
+                                <label class="form-label">Team Name</label>
                                 <div>
                                     <input type="text" id="name" name="name" class="form-control"
-                                        aria-describedby="emailHelp" placeholder="Enter name of the game">
+                                        aria-describedby="emailHelp" placeholder="Enter name of the team">
                                     <small class="form-hint">Lorem ipsum dolor sit amet consectetur adipisicing
                                         elit.</small>
                                 </div>
                             </div>
+
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-primary">Join Team</button>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="container-xl">
+                <!-- Content here -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Create Team</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/users/create" method="POST">
                             <div class="form-group mb-3 ">
-                                <label class="form-label">No. Of Players</label>
+                                <label class="form-label">Team Name</label>
                                 <div>
-                                    <input type="number" id="noOfPlayers" name="noOfPlayers" class="form-control"
-                                        placeholder="Maximum Paritcipants">
-                                    <small class="form-hint">
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                    </small>
+                                    <input type="text" id="name" name="name" class="form-control"
+                                        aria-describedby="emailHelp" placeholder="Enter name of the team">
+                                    <small class="form-hint">Lorem ipsum dolor sit amet consectetur adipisicing
+                                        elit.</small>
                                 </div>
                             </div>
 
                             <div class="form-footer">
-                                <button type="joinTeam" class="btn btn-primary">Join Team</button>
+                                <button type="submit" class="btn btn-primary">Create Team</button>
                             </div>
                         </form>
+                        
                     </div>
                 </div>
             </div>
