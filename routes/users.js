@@ -37,7 +37,7 @@ router.get("/viewGame", function (req, res, next) {
 router.post("/joinGame", function (req, res, next) {});
 
 router.get("/dashboard1", function (req, res, next) {
-  res.render("dashboard1", { joinedGame: false });
+  res.render("dashboard1", { joinedGame: true, joinedTeam: true });
 });
 
 module.exports = router;
