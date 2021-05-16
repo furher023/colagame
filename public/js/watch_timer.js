@@ -1,5 +1,7 @@
 window.addEventListener("load", () => {
-  var game_time = new Date("May 17, 2021 23:53:25").getTime();
+  var get_time = document.getElementById("team_time").innerText;
+
+  var game_time = new Date(get_time).getTime();
 
   function timer() {
     var current_time = new Date().getTime();
@@ -12,7 +14,6 @@ window.addEventListener("load", () => {
     );
     var minutes = Math.floor((time_gap % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((time_gap % (1000 * 60)) / 1000);
-    console.log("hii");
     document.getElementById("timerWatch").innerHTML =
       "Game Will start in  " +
       days +
@@ -24,6 +25,17 @@ window.addEventListener("load", () => {
       seconds +
       "s ";
 
+    function toggleStartButton() {
+      if (time_gap <= 0) {
+        document
+          .getElementById("start_gameButton")
+          .classList.remove("disabled");
+      } else {
+        document.getElementById("start_gameButton").classList.add("disabled");
+      }
+    }
+
+    toggleStartButton();
     return time_gap;
   }
 
