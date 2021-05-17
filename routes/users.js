@@ -37,7 +37,11 @@ router.get("/viewGame", function (req, res, next) {
 router.post("/joinGame", function (req, res, next) {});
 
 router.get("/dashboard1", function (req, res, next) {
-  res.render("dashboard1", { joinedGame: true, joinedTeam: true });
+  res.render("dashboard1", {
+    joinedGame: true,
+    joinedTeam: true,
+    game_time: "May 17, 2021 00:55:00",
+  });
 });
 
 module.exports = router;

@@ -49,8 +49,8 @@
     <% }else { %>
 
         <div class="timer">
-            
             <span id="timerWatch" ></span>
+            <span id="team_time" style="display: none;"><%= game_time %></span>
         </div>
 
         <% if(joinedTeam){ %>
@@ -78,9 +78,13 @@
                         <div class="card-body">
                            Table containig the teammates info
                         </div>
+                        <div class="form-footer start_game">
+                            <button type="submit" id="start_gameButton" class="btn btn-primary">Start Game</button>
+                        </div>
                     </div>
+                   
                 </div>
-               Start game somewhere her in the middle or up top jahan sahi lage
+                
             </div>
         
         <% }else { %>
