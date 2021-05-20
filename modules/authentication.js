@@ -1,9 +1,9 @@
 const db = require('./dbConnect');
-const table = db.model('user');
+const user = db.model('user');
 
 function authenticate({email,password}){
     return new Promise((resolve,reject)=>{
-        table.findOne({email:email},(err,result)=>{
+        user.findOne({email:email},(err,result)=>{
             if(err) reject(err);
             else if(result!=null){
                 //console.log(password);
@@ -18,5 +18,6 @@ function authenticate({email,password}){
         });
     });
 }
+
 
 module.exports = authenticate;

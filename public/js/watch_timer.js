@@ -43,6 +43,23 @@ window.addEventListener("load", () => {
     var x = timer();
     if (x < 0) {
       document.getElementById("timerWatch").innerHTML = "Game is started";
+      var gameId='01';
+          var round=1;
+          var data ={
+            gameId: gameId,
+            round: round
+          }
+          console.log(data);
+          $.ajax({
+            type:'POST',
+            url:'/updateRound',
+            data: {
+              data: JSON.stringify(data)
+            },
+            success: function(result){
+              console.log("Done")
+            }
+          });
       clearInterval(y);
     }
   }, 1000);

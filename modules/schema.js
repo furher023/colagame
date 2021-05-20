@@ -36,17 +36,62 @@ const game = new Schema({
     name:{
         type: String
     },
-    players:{
+    teams:{
         type: Number
     },
-    starts:{
+    startTime:{
         type: Date
     },
     rounds:{
-        type:Number
+        type:Number,
+        default:12
+    },
+    currentRound:{
+        type: Number,
+        default: 0
+    },
+    data:{
+        type: Array
+    },
+    creator:{
+        type: String
     }
 });
 game.plugin(normalize);
 mongoose.model('game',game);
+
+const team = new Schema({
+    name:{
+        type: String
+    },
+    member:{
+        type: String
+    },
+    gameId:{
+        type: String
+    },
+    role:{
+        type: Number,
+        default: 0
+    }
+});
+
+team.plugin(normalize);
+mongoose.model('team',team)
+
+const register = new Schema({
+    game:{
+        type: String
+    },
+    team:{
+        type: String
+    },
+    user:{
+        type: String
+    }
+});
+
+register.plugin(normalize);
+mongoose.model('register',register);
 
 module.exports = mongoose;
