@@ -1,11 +1,36 @@
 var express = require('express');
 var router = express.Router();
-const mongoose = require('mongoose');
+var db = require('../modules/dbConnect')
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
+});
+
+//Sign Up Render
+router.get('/signUp', function(req, res, next) {
+  res.render('signUp');
+});
+
+//Sign Up Post
+router.post('/signUp', function(req, res, next) {
+  let userModel = db.model('user');
+  let user = new userModel();
+  user.firstName = req.body.firstName;
+  user.lastName = req.body.lastName;
+  user.email = req.body.email;
+  user.passwordHash = req.body.password;
+  user.save((err,result)=>{
+    if(err){
+      console.log(err);
+      res.send(" Not able to signup");
+    } 
+    else{
+      console.log(result);
+      res.redirect('/signIn');
+    }
+  });
 });
 
 //Sign In render
@@ -22,11 +47,15 @@ router.post('/signIn', function(req, res, next) {
   authenticate(req.body)
   .then( (result) =>{
     setSession(req,result);
+    if(req.session.admin == 0)
     res.redirect('/users/dashboard');
+    else{
+      res.redirect('/admin/dashboard');
+    }
   } )
   .catch( (err) =>{
       if(err) res.send(err);
-      else res.redirect('/signIn',{log_error:true});
+      else res.render('signIn',{log_error:true});
   })
 
 });

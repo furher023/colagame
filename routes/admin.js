@@ -4,7 +4,8 @@ const db = require('../modules/dbConnect');
 
  //admin dashboard
 router.get("/dashboard", function (req, res, next) {
-    res.render("dashboard");
+    if(req.session.user != undefined && req.session.admin == 1)
+    res.render("adminDashboard",{user : req.session.user});
   });
   
   //create game
@@ -15,6 +16,7 @@ router.get("/dashboard", function (req, res, next) {
     game.noOfPlayers = req.body.noOfPlayers;
     game.startTime = req.body.time;
     game.rounds = req.body.rounds;
+    game.creator = req.session.user.email;
     console.log(game);
     game.save((err,result)=>{
       if(err) res.send(err);
@@ -25,14 +27,16 @@ router.get("/dashboard", function (req, res, next) {
     });
   });
   
-   //
+  // Viewing all created games 
   router.get("/viewGame", function (req, res, next) {
-    let table = db.model("game");
-    table.find({},(err,result)=>{
+    if(req.session.user != undefined && req.session.admin != 0){
+      let table = db.model("game");
+      table.find({creator: req.session.user.email},(err,result)=>{
       if(err)  res.render("viewGame", { game: null });
       else
       res.render("viewGame", { game: result });
     });
+    }
   });
 
 

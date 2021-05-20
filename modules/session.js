@@ -1,6 +1,7 @@
-function setSession(req,{name,email,admin}){
+function setSession(req,{firstName,lastName,email,admin}){
     req.session.user = {
-        name: name,
+        firstName: firstName,
+        lastName: lastName,
         email: email,
         admin: admin
     };
