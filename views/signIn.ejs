@@ -23,6 +23,18 @@
         <form class="card card-md" action="/signIn" method="POST">
           <div class="card-body">
             <h2 class="card-title text-center mb-4">Login to your account</h2>
+            
+            <!--displaying error-->
+            <% if (log_error) { %>
+              <script language="javascript">
+                  var x = document.getElementById("err_msg");
+                  x.style.display = "block";
+              </script>
+              <% } %>
+            <div id= err style='display:none;'>
+              <span id= err_msg>Invalid</span>
+            </div>
+            
             <div class="mb-3">
               <label class="form-label">Email address</label>
               <input type="email" id="email" name="email" class="form-control" placeholder="Enter email">
@@ -70,7 +82,7 @@
           </div>
         </form>
         <div class="text-center text-muted mt-3">
-          Don't have account yet? <a href="./sign-up.html" tabindex="-1">Sign up</a>
+          Don't have account yet? <a href="./signUp" tabindex="-1">Sign up</a>
         </div>
       </div>
     </div>
