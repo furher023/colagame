@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const mongoose = require('mongoose');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -8,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 //Sign In render
 router.get('/signIn', function(req, res, next) {
-  res.render('signIn');
+  res.render('signIn',{log_error:false});
 });
 
 //Sign In post
@@ -24,7 +26,7 @@ router.post('/signIn', function(req, res, next) {
   } )
   .catch( (err) =>{
       if(err) res.send(err);
-      else res.redirect('/signIn');
+      else res.redirect('/signIn',{log_error:true});
   })
 
 });
