@@ -46,12 +46,14 @@ router.post('/signIn', function(req, res, next) {
 
   authenticate(req.body)
   .then( (result) =>{
-    setSession(req,result);
-    if(req.session.admin == 0)
+    setSession(req,result)
+    .then(()=>{
+      if(req.session.admin == 0)
     res.redirect('/users/dashboard');
     else{
       res.redirect('/admin/dashboard');
     }
+    });
   } )
   .catch( (err) =>{
       if(err) res.send(err);
