@@ -55,6 +55,10 @@ const game = new Schema({
     },
     creator:{
         type: String
+    },
+    status:{
+        type:Boolean,
+        default: true
     }
 });
 game.plugin(normalize);
@@ -80,14 +84,18 @@ team.plugin(normalize);
 mongoose.model('team',team)
 
 const register = new Schema({
-    game:{
+    gameId:{
         type: String
     },
     team:{
-        type: String
+        type: String,
+        default: null
     },
     user:{
         type: String
+    },
+    status:{
+        type: Boolean
     }
 });
 
