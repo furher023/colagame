@@ -6,7 +6,7 @@ function authenticate({email,password}){
         user.findOne({email:email},(err,result)=>{
             if(err) reject(err);
             else if(result!=null){
-                //console.log(password);
+                console.log(password);
                 if(result.passwordHash == password){
                     console.log("here");
                     resolve(result);
