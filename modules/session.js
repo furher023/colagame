@@ -12,7 +12,8 @@ function setSession(req,{firstName,lastName,email,admin}){
         register.find({user: email, status: true},(err,result)=>{
             if(err) console.log(err)
             else{
-                    req.session.user.gameData=result;
+                    req.session.user.gameData=result[0];
+                    console.log("here");
                     resolve();
                 }
                 

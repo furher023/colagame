@@ -48,7 +48,7 @@ router.post('/signIn', function(req, res, next) {
   .then( (result) =>{
     setSession(req,result)
     .then(()=>{
-      if(req.session.admin == 0)
+      if(req.session.user.admin == 0)
     res.redirect('/users/dashboard');
     else{
       res.redirect('/admin/dashboard');
@@ -76,6 +76,12 @@ router.post('/updateRound',(req,res)=>{
   let data = JSON.parse(req.body.data);
   console.log(data);
   res.send("done");
+});
+
+//Logout
+router.get('/logout',(req,res,next)=>{
+  req.session.destroy();
+  res.redirect('/signIn');
 })
 
 module.exports = router;

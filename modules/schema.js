@@ -25,8 +25,7 @@ const user = new Schema({
 user.plugin(normalize);
 const User = mongoose.model('user',user);
 
-
-/* User.create({firstName:"Prakhar",lastName:"Vijay",email:"prakhar.18232@knit.ac.in",passwordHash:"password",admin:2},(err,res)=>{
+/*User.create({firstName:"Prakhar",lastName:"Vijay",email:"prakhar.18232@knit.ac.in",passwordHash:"password",admin:2},(err,res)=>{
     if(err) console.log(err);
     else{
         console.log("inserted");
@@ -42,6 +41,9 @@ const game = new Schema({
     startTime:{
         type: Date
     },
+    endTime:{
+        type: Date
+    },
     rounds:{
         type:Number,
         default:12
@@ -55,10 +57,6 @@ const game = new Schema({
     },
     creator:{
         type: String
-    },
-    status:{
-        type:Boolean,
-        default: true
     }
 });
 game.plugin(normalize);
