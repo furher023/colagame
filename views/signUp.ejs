@@ -25,8 +25,12 @@
             <h2 class="card-title text-center mb-4">Sign Up</h2>
 
             <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input type="username" id="username" name="username" class="form-control" placeholder="Enter username">
+                <label class="form-label">Firstname</label>
+                <input type="firstname" id="firstname" name="firstname" class="form-control" placeholder="Enter First name">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Lastname</label>
+                <input type="lastname" id="lastname" name="lastname" class="form-control" placeholder="Enter Last name">
               </div>
             <div class="mb-3">
               <label class="form-label">Email address</label>
@@ -34,16 +38,17 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Enter password">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" >
               </div>
               <div class="mb-3">
                 <label class="form-label">Confirm Password</label>
-                <input type="password" id="password1" name="password1" class="form-control" placeholder="Enter tha password again">
+                <input type="password" id="password1" name="password1" class="form-control" placeholder="Enter the password again" onkeyup='check();'>
+                <span id='message'></span>
               </div>
             
             
             <div class="form-footer">
-              <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+              <button type="submit" class="btn btn-primary w-100" id= 'submit'>Sign Up</button>
             </div>
           </div>
         </form>
@@ -54,6 +59,23 @@
     </div>
     <!-- Libs JS -->
     <!-- Tabler Core -->
+
+    <script>
+      var check = ()=>{
+
+        if(document.getElementById('password').value != document.getElementById('password1').value){
+
+          document.getElementById('message').style.color = 'red';
+          document.getElementById('message').innerHTML = 'Password and confirm password should match';
+          document.getElementById('submit').disabled = true;
+        }
+        else{
+          document.getElementById('message').innerHTML = '';
+          document.getElementById('submit').disabled = false;
+        }
+      }
+
+    </script>
     
   </body>
 </html>
