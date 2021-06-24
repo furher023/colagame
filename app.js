@@ -36,9 +36,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Authorizing users for admin and users routes using middleware functions
+var authorize = require('./modules/authorize');
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/admin', adminRouter);
+app.use('/users',authorize.authorizeUser, usersRouter);
+app.use('/admin',authorize.authorizeAdmin, adminRouter);
 
 
 // catch 404 and forward to error handler

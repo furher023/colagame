@@ -4,7 +4,6 @@ const db = require('../modules/dbConnect');
 
  //admin dashboard
 router.get("/dashboard", function (req, res, next) {
-    if(req.session.user != undefined && req.session.admin == 1)
     res.render("adminDashboard",{user : req.session.user});
   });
   
@@ -16,8 +15,11 @@ router.get("/dashboard", function (req, res, next) {
     game.noOfPlayers = req.body.noOfPlayers;
     game.startTime = req.body.time;
     game.rounds = req.body.rounds;
+    game.rounds = req.body.rounds;
     game.creator = req.session.user.email;
-    console.log(game);
+    let date = new Date(req.body.time);
+    game.endTime = new Date(date.getTime() +( req.body.rounds > 2 ? 20*60000 + (req.body.rounds-2)*5*60000 : req.body.rounds*10*60000 )); 
+    console.log(new Date(date.getTime() +( req.body.rounds > 2 ? 20*60000 + req.body.rounds*5*60000 : req.body.rounds*10*60000 )) );
     game.save((err,result)=>{
       if(err) res.send(err);
       else{
@@ -29,14 +31,12 @@ router.get("/dashboard", function (req, res, next) {
   
   // Viewing all created games 
   router.get("/viewGame", function (req, res, next) {
-    if(req.session.user != undefined && req.session.admin != 0){
       let table = db.model("game");
       table.find({creator: req.session.user.email},(err,result)=>{
-      if(err)  res.render("viewGame", { game: null });
+      if(err)  res.render("viewGame", { game: null,user : req.session.user });
       else
-      res.render("viewGame", { game: result });
+      res.render("viewGame", { game: result,user : req.session.user });
     });
-    }
   });
 
 

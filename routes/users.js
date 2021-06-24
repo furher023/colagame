@@ -4,30 +4,32 @@ const db = require('../modules/dbConnect');
 
 /* GET user dashboard. */
 router.get("/dashboard", function (req, res, next) {
-  
-  if(req.session.user!= undefined){
-    if(req.session.user.gameData != null){
+  /*console.log(req.session.user);
+  if(req.session.user!= undefined){ */
+    if(req.session.user.gameData.length!= 0){
       let register = db.model('register');
-      register.find({user:req.session.user.email,game:req.session.user.gameData.id,status:true},(err,result)=>{
+      register.find({user:req.session.user.email,gameId:req.session.user.gameData.id,status:true},(err,result)=>{
         if(err) console.log(err);
-        if(register.team != undefined)
+        console.log(result);
+        if(result[0].team != null)
         res.render("userDashboard", {
           joinedGame: true,
           joinedTeam: true,
-          game_time: "May 18, 2021 06:56:00",
+          game_time: req.session.user.gameData.startTime,
           user: req.session.user
         });
         else
         res.render("userDashboard", {
           joinedGame: true,
           joinedTeam: false,
-          game_time: "May 18, 2021 06:56:00",
+          game_time: req.session.user.gameData.startTime,
           user: req.session.user
         });
       })
       
     }
     else{
+      console.log("here");
       res.render("userDashboard", {
         joinedGame: false,
         joinedTeam: false,
@@ -36,9 +38,9 @@ router.get("/dashboard", function (req, res, next) {
       });
     }
     
-  }
+  /*}
   else
-    res.redirect('/signIn');
+    res.redirect('/signIn');*/
   
 });
 
@@ -56,12 +58,12 @@ router.post("/joinGame", function (req, res, next) {
         if (err)  console.log(err);
         else {
           req.session.user.gameData= result;
-          res.redirect('users/dashboard');
+          res.redirect('/users/dashboard');
         }
       })
     }
     else{
-      res.render('userDashboard')
+      res.render('userDashboard',{user: req.session.user});
     }
   })
   
@@ -69,6 +71,10 @@ router.post("/joinGame", function (req, res, next) {
 
 router.post("/joinTeam",(req,res,next)=>{
   
+});
+
+router.get('/game',(req,res,next)=>{
+  res.render('game');
 })
 
 
